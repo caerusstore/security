@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: external-user-auth-service
+
+  security:
+    oauth2:
+      client:
+        registration:
+          external-service:
+            client-id: your-client-id
+            client-secret: your-client-secret
+            scope: openid,profile,email
+            authorization-grant-type: client_credentials
+            provider: external-service
+        provider:
+          external-service:
+            authorization-uri: https://external-service.com/oauth/authorize
+            token-uri: https://external-service.com/oauth/token
+            user-info-uri: https://external-service.com/userinfo
+
+feign:
+  oauth2:
+    enabled: true
