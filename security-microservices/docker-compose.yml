@@ -1,0 +1,12 @@
+version: '3'
+services:
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mock-user-service
+  mock-user-service:
+    build: ./mock-user-service
+    ports:
+      - "8082:8082"
